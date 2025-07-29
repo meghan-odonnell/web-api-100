@@ -1,0 +1,24 @@
+@SoftwareCenter.Api_HostAddress = http://localhost:1337
+ 
+POST {{SoftwareCenter.Api_HostAddress}}/vendors
+Accept: application/json
+Content-type: application/json
+ 
+{
+    "name": "Microsoft",
+    "url": "https://wwww.microsoft.com",
+    "pointOfContact": {
+        "name": "Satya",
+        "phone": "800 big-boss",
+        "email": "satya@microsoft.com"
+    }
+}
+
+###
+
+GET {{SoftwareCenter.Api_HostAddress}}/vendors/e8ff1d97-f0d3-48e4-b7da-f68878453c09
+
+
+###
+
+GET {{SoftwareCenter.Api_HostAddress}}/vendors/
