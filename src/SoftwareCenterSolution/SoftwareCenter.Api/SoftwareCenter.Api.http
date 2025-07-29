@@ -22,3 +22,11 @@ GET {{SoftwareCenter.Api_HostAddress}}/vendors/e8ff1d97-f0d3-48e4-b7da-f68878453
 ###
 
 GET {{SoftwareCenter.Api_HostAddress}}/vendors/
+
+   [HttpGet("/vendors")]
+    public async Task<ActionResult> GetAllVendorsAsync(CancellationToken token)
+    {
+        var vendors = await session.Query<CreateVendorResponse>().ToListAsync();
+ 
+        return Ok(vendors);
+    }

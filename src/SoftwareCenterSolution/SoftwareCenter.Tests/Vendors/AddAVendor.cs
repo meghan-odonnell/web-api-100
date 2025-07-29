@@ -1,5 +1,7 @@
-﻿using Alba;
+﻿
+using Alba;
 using SoftwareCenter.Api.Vendors;
+using static SoftwareCenter.Api.Vendors.Controller;
 
 namespace SoftwareCenter.Tests.Vendors;
 
@@ -32,7 +34,9 @@ public class AddAVendor
 
         Assert.NotNull(getResponseBody);
 
+
         Assert.Equal(postBodyResponse, getResponseBody);
+
 
     }
 }
