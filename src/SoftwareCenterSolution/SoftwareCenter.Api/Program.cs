@@ -20,3 +20,5 @@ app.MapControllers();  // go find all the controllers (have to be public class) 
 // and create a cheat sheet
 
 app.Run();
+
+public partial class Program; 
