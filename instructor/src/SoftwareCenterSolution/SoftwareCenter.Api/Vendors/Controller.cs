@@ -1,16 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using FluentValidation;
 using Marten;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SoftwareCenter.Api.Vendors;
 
 
+[Authorize] // no longer allow anonymous people to do anything here.
 public class Controller(IDocumentSession session) : ControllerBase
 {
 
     // this is the method you should call when a POST /vendors is received.
     [HttpPost("/vendors")]
+    [Authorize(Policy = "CanAddVendor")]
     public async Task<ActionResult> AddAVendorAsync(
         [FromBody] CreateVendorRequest request,
         [FromServices] IValidator<CreateVendorRequest> validator,
@@ -40,13 +43,13 @@ public class Controller(IDocumentSession session) : ControllerBase
             request.Url,
             request.PointOfContact
             );
-        session.Store(response);
+        session.Store(response); // I would to add a vendor
+        //                         // I want to update this other table, maybe 
         await session.SaveChangesAsync();
         return Ok(response); 
     }
 
 
-    // GET /vendors/tacos
     [HttpGet("/vendors/{id:guid}")]
     public async Task<ActionResult> GetVendorByIdAsync(Guid id, CancellationToken token)
     {

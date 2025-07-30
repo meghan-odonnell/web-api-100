@@ -1,0 +1,13 @@
+@SoftwareCenter.Api_HostAddress = http://localhost:1338
+ 
+POST {{SoftwareCenter.Api_HostAddress}}/api/shows
+Accept: application/json
+Content-type: application/json
+ 
+{
+    "name": "Arrested Development",
+    "description": "Bluths",
+    "streamingService": "Netflix"
+}
+
+###
