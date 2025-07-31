@@ -1,6 +1,7 @@
 @SoftwareCenter.Api_HostAddress = http://localhost:1337
  
 POST {{SoftwareCenter.Api_HostAddress}}/vendors
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImJvYkBhb2wuY29tIiwic3ViIjoiYm9iQGFvbC5jb20iLCJqdGkiOiJiM2ZmYjlmOSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTMzNyIsIm5iZiI6MTc1Mzk3MzMxOSwiZXhwIjoxNzYxOTIyMTE5LCJpYXQiOjE3NTM5NzMzMjEsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.OSaT5WC3pTwYymLjye_DDOzv8TeyPlbfbKlAufZzTS4
 Accept: application/json
 Content-type: application/json
  
@@ -22,7 +23,9 @@ GET {{SoftwareCenter.Api_HostAddress}}/vendors/e8ff1d97-f0d3-48e4-b7da-f68878453
 ###
 
 GET {{SoftwareCenter.Api_HostAddress}}/vendors/
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImJvYkBhb2wuY29tIiwic3ViIjoiYm9iQGFvbC5jb20iLCJqdGkiOiJiM2ZmYjlmOSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MTMzNyIsIm5iZiI6MTc1Mzk3MzMxOSwiZXhwIjoxNzYxOTIyMTE5LCJpYXQiOjE3NTM5NzMzMjEsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.OSaT5WC3pTwYymLjye_DDOzv8TeyPlbfbKlAufZzTS4
+// the bearer auth is the token that was generated when we created a dotnet user-jwts create -n bob@aol.com. 
+// the auth was automatically added to appsettings.dev.json when we did that
    [HttpGet("/vendors")]
     public async Task<ActionResult> GetAllVendorsAsync(CancellationToken token)
     {

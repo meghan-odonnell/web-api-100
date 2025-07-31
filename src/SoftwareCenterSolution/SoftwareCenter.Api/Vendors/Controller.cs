@@ -1,18 +1,28 @@
 ﻿using FluentValidation;
 using Marten;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SoftwareCenter.Api.Vendors;
 
+
+[Authorize] // no longer allow anonymous people to do anything here.
 public class Controller(IDocumentSession session) : ControllerBase
 {
     //Controller based routing
     //this is the method you should call when a POST /vendors is received.
     [HttpPost("/vendors")]
+    [Authorize(Policy = "CanAddVendor")]
     public async Task<ActionResult> AddAVendorAsync(
         [FromBody] CreateVendorRequest request,        // [FromBody] is a little helper 
+        [FromServices] IValidator<CreateVendorRequest> validator,
         CancellationToken token)
     {
+        var validationResults = await validator.ValidateAsync(request);
+        if (!validationResults.IsValid)
+        {
+            return BadRequest(validationResults);
+        }
         // validation
         // field validation - what's required, optional.. what are the rules for required things
 
@@ -30,7 +40,6 @@ public class Controller(IDocumentSession session) : ControllerBase
     }
 
    
-    // GET /vendors/tacos
     [HttpGet("/vendors/{id:guid}")]
     public async Task<ActionResult> GetVendorByIdAsync(Guid id, CancellationToken token)
     {
