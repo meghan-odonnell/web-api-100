@@ -29,3 +29,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6I
 ###
 
 GET {{SoftwareCenter.Api_HostAddress}}/info
+
+
+###
+
+POST {{SoftwareCenter.Api_HostAddress}}/vendors/c53f4f43-71cd-45bb-9333-2c7cf9afbfaf/items 
+Content-Type: application/json
+
+{
+    "name": "Word",
+    "description": "Do words and stuff",
+    "version": "2025"
+}

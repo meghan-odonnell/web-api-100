@@ -31,7 +31,7 @@ builder.Services.AddScoped<IValidator<CreateVendorRequest>, CreateVendorRequestV
 builder.Services.AddScoped<IValidator<CreateVendorPointOfContactRequest>, CreateVendorPointOfContactRequestValidator>();
 // it will give us a scoped service called IDocumentSession
 // if this was Entity framework, it would give us a "DbContext" object we can use.
-
+builder.Services.AddScoped<ILookupVendors, VendorLookup>();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
